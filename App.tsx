@@ -3,25 +3,25 @@ import 'react-native-gesture-handler';
 import { useCallback, useEffect, useState } from 'react';
 import { View } from 'react-native';
 
-import { StatusBar } from 'expo-status-bar';
 import * as SplashScreen from 'expo-splash-screen';
-import { useFonts, Inter_400Regular, Inter_500Medium } from '@expo-google-fonts/inter';
+import * as Font from 'expo-font';
+import { StatusBar } from 'expo-status-bar';
+import { Inter_400Regular, Inter_500Medium } from '@expo-google-fonts/inter';
 
-import { Widget } from './src/components/Widget';
+import Widget from './src/components/Widget';
 import { theme } from './src/theme';
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
 
-  let [fontsLoaded] = useFonts({
-    Inter_400Regular,
-    Inter_500Medium
-  });
-
   useEffect(() => {
     async function prepare() {
       try {
         await SplashScreen.preventAutoHideAsync();
+        await Font.loadAsync({
+          Inter_400Regular,
+          Inter_500Medium
+        });
       } catch (e) {
         console.warn(e);
       } finally {
@@ -33,10 +33,10 @@ export default function App() {
   }, [])
 
   const onLayoutRootView = useCallback(async () => {
-    if (appIsReady && fontsLoaded) {
+    if (appIsReady) {
       await SplashScreen.hideAsync();
     }
-  }, [appIsReady, fontsLoaded]);
+  }, [appIsReady]);
 
   if (!appIsReady) {
     return null;
