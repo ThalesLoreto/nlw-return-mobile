@@ -1,3 +1,5 @@
+import 'react-native-gesture-handler';
+
 import { useCallback, useEffect, useState } from 'react';
 import { View } from 'react-native';
 
@@ -34,7 +36,7 @@ export default function App() {
     if (appIsReady && fontsLoaded) {
       await SplashScreen.hideAsync();
     }
-  }, [appIsReady]);
+  }, [appIsReady, fontsLoaded]);
 
   if (!appIsReady) {
     return null;
@@ -45,13 +47,13 @@ export default function App() {
       style={{flex: 1, backgroundColor: theme.colors.background}}
       onLayout={onLayoutRootView}
     >
-      <Widget />
-
       <StatusBar
         style="light"
         backgroundColor="transparent"
         translucent
       />
+
+      <Widget />
     </View>
   );
 }
