@@ -6,9 +6,9 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: 36,
-    height: 36,
-    marginTop: 42,
+    width: 40,
+    height: 40,
+    marginTop: 22,
     marginBottom: 10,
   },
   title: {
