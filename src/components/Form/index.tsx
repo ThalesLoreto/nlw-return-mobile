@@ -46,9 +46,9 @@ export function Form({ feedbackType, onFeedbackCancelled, onFeedbackSent }: Form
 
     try {
       await api.post('/feedbacks', {
-        type: feedbackType,
         comment,
         screenshot: `data:image/png;base64, ${screenshotBase64}`,
+        type: feedbackType,
       });
 
       onFeedbackSent();
@@ -85,7 +85,7 @@ export function Form({ feedbackType, onFeedbackCancelled, onFeedbackSent }: Form
         placeholder="Algo não está funcionando bem? Queremos corrigir. Conte com detalhes o que está acontecendo..."
         placeholderTextColor={theme.colors.text_secondary}
         autoCorrect={false}
-        onChange={setComment}
+        onChangeText={setComment}
       />
 
       <View style={styles.footer}>
